@@ -13,6 +13,7 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [eventText, setEventText] = useState('');
   const [view, setView] = useState('month');
+  const [services, setServices] = useState([]);
 
   const events = [{
     start: moment('2024-01-01').startOf('isoWeek').add(2, 'hours'),
@@ -38,8 +39,44 @@ function App() {
     closeModal();
   }
 
+  function addService() {
+    setServices([...services, { name: '', description: '' }]);
+  }
+
+  function handleServiceChange(index, field, value) {
+    const newServices = [...services];
+    newServices[index][field] = value;
+    setServices(newServices);
+  }
+
   return (
     <div className="App">
+      <div className="side-menu">
+        {services.map((service, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              placeholder="Service Name"
+              value={service.name}
+              onChange={(e) => handleServiceChange(index, 'name', e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Service Description"
+              value={service.description}
+              onChange={(e) => handleServiceChange(index, 'description', e.target.value)}
+            />
+            <input
+              type="int"
+              placeholder="Service Duration"
+              value={service.duration}
+              onChange={(e) => handleServiceChange(index, 'integer', e.target.value)}
+            />            
+          </div>
+        ))}
+        <button onClick={addService}>Add Service</button>
+        <button onClick={handleFormSubmit}>Send</button>
+      </div>
       {view === 'month' ? (
         <Calendar
           onChange={onChange}

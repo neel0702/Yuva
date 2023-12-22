@@ -129,3 +129,45 @@
   border: none;
   font-size: 30px;
 }
+.side-menu {
+  position: fixed;
+  left: -160px; /* Hide the menu by shifting it to the left */
+  top: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: left 0.5s; /* Smooth transition */
+  /*ok*/
+}
+
+.side-menu:hover {
+  left: 0; /* Show the menu when hovered over */
+}
+
+.side-menu input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.side-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.side-menu button:hover {
+  background-color: #0056b3;
+}
+
